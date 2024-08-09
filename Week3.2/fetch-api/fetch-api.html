@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./style.css" rel="stylesheet">
+</head>
+<body>
+    <script>
+        // .then wala method to call an api
+        function getAnimalData(){
+            fetch("https://fakerapi.it/api/v1/persons")
+            .then(function(response){
+                response.json()
+                .then(function(finalData){
+                    console.log(finalData);
+
+                })
+            })
+        }
+        // async await wala method to call an api
+        async function getAnimalData2(){
+            const response = await fetch("https://fakerapi.it/api/v1/persons",{
+                headers:{      
+                "Authorization" : localStorage.read("token")
+                } //to read token from local storage which everytime is being send with the data for checking if this is the correct user or not 
+            });
+            const finalData = await response.json()
+            document.getElementById("container").innerHTML = JSON.stringify(finalData.data); //to print the data in frontend
+            console.log(finalData);
+        }
+    </script>
+    <button id="container" onclick="getAnimalData()">Get Animal Data</button>
+    <button id="container" onclick="getAnimalData2()">Get Animal Data 2</button>
+
+
+    <script src="./script.js"></script>
+</body>
+</html>
+
+
+
+<!-- axios is lib that lib which alows to fetch data in a cleaner code and in one line code   -->
