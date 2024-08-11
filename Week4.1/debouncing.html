@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    // debouncing, throtlling
+
+    // for example --->> if we make this program as everytime user emter the number , request goes out ,,,,, which is done by 
+    
+    //     <input oninput="popularDiv2()" id="firstNumber" type="text" placeholder="first number">
+    //     <br></br>
+    //     <input oninput="popularDiv2()" id="secondNumber" type="text" placeholder="second number">
+    //     <br></br>
+    //     <div id="finalSum"></div>
+    
+    // so on every input an request is being sent and lot of request are going out even for a single output
+    // for exp -->> if we add 123 and 456 ===>> we will be sending 6 requests here but only needed is one 
+    // so here comes the concept of Debouncing: to delay the request going out 
+    // like after a pause of 100ms (if user is not typing) then only will the request will be send
+
+
+        // debouncing function--->>>>>
+        let timeout;
+        function debouncePopulateDiv(){
+            // delay the call to populateDiv untill i not been called for 100ms
+            // and i'vs been called atleast once
+            clearTimeout(timeout);
+            timeout = setTimeout(function(){
+                populateDiv()
+            },1000);
+            // here what is heppning is that the request is going out after 100ms but if we give input during these 100ms , the timer doest restart , the request will go out in 100ms
+
+            // if debouncePopulateDiv() called once => start the "setTimeout clock" but if debouncePopulateDiv() called again while the clock is running, stop the original clock and restart the new clock 
+
+            // now question is how to cancel a clock?
+            // clearTimeout() is the function
+            // syntax is ---->>>>
+
+            // const timeout = setTimeout(function(){
+            //     populateDiv()
+            // },1000);
+            // clearTimeout(timeout);
+
+            // here no request are going out as clock gets created and immedigtly get cleared out and no new clock is running
+            // what we have to do
+            // ki bhaiya clock gets created and if there is another call to debouncePopulateDiv() then old clock gets deleted and new clock starts
+        }
+
+
+
+
+        function populateDiv(){
+            const a = document.getElementById("firstNumber").value;
+            const b = document.getElementById("secondNumber").value;
+            fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+                .then(function(response){
+                    console.log(response);
+                        response.text()
+                            .then(function(ans){
+                                console.log(ans);
+                                document.getElementById("finalSum").innerHTML = ans;
+                            }
+                    )
+                }
+            )
+        }
+</script>
+<body>
+    <input oninput="debouncePopulateDiv()" id="firstNumber" type="text" placeholder="first number">
+    <br></br>
+    <input oninput="debouncePopulateDiv()" id="secondNumber" type="text" placeholder="second number">
+    <br></br>
+    <div id="finalSum"></div>
+</body>
+</html>

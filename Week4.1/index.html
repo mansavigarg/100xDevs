@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+        function populateDiv(){
+            //debouncing, throtlling
+
+            // for example --->> if we make this program as everytime user emter the number , request goes out ,,,,, which is done by 
+            
+            // <body>
+            //     <input oninput="popularDiv2()" id="firstNumber" type="text" placeholder="first number">
+            //     <br></br>
+            //     <input oninput="popularDiv2()" id="secondNumber" type="text" placeholder="second number">
+            //     <br></br>
+            //     <div id="finalSum"></div>
+            // </body> 
+            
+            // so on every input an request is being sent and lot of request are going out even for a single output
+            // for exp -->> if we add 123 and 456 ===>> we will be sending 6 requests here but only needed is one 
+            // so here comes the concept of Debouncing: to delay the request going out 
+            // like after a pause of 100ms (if user is not typing) then only will the request will be send
+
+
+            
+            const a = document.getElementById("firstNumber").value;
+            const b = document.getElementById("secondNumber").value;
+            // parseInt => used to convert string to int
+
+            // this is the front end method that we had done till now and now we dont have to do this ,
+            // ------>>>>> element.innerHTML = parseInt(a) + parseInt(b);
+
+
+            // there is another server that is doing all the calculation stuff and we havr to call that server here
+            // https://github.com/hkirat/sum-server     ------ https://sum-server.100xdevs.com/sum?a=1&b=2999
+            // using fetch function
+
+            // to check fetch is async , we use following code
+            // const ans = fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+            // console.log(ans);
+
+            // fetch is a async function as this is getting response from some other server so a promis is returned 
+            // so we use .then  
+            fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+                .then(function(response){
+                    console.log(response);
+                        response.text()
+                            .then(function(ans){
+                                console.log(ans);
+                                document.getElementById("finalSum").innerHTML = ans;
+                            }
+                    )
+                }
+            )
+            // in contrast to fetch , we can use "axios" library which uses a cleaner syntax and cleaner response
+            // syntax will look loke this
+            // const response = await axios.get("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+            // .then(function(response){
+            //     response.data
+            // })
+
+        }
+
+        // this also does the same function as this is using the async await syntax
+        async function populateDiv2(){
+            const a = document.getElementById("firstNumber").value;
+            const b = document.getElementById("secondNumber").value;
+
+            const response = await fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+            const ans = await response.text();
+            document.getElementById("finalSum").innerHTML = ans;
+        }
+
+
+</script>
+<body>
+    <input id="firstNumber" type="text" placeholder="first number">
+    <br></br>
+    <input id="secondNumber" type="text" placeholder="second number">
+    <br></br>
+    <button onclick="populateDiv2()"> Calculate SUM </button>
+    <br></br>
+    <div id="finalSum"></div>
+</body>
+</html>
+
+
+
+
+<!-- throtlling
+if backend has so many request it will ignore some request that is throtlling -->
+
+
+
+
+
+
