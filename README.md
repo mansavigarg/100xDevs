@@ -13,7 +13,6 @@ Welcome to my Full Stack Web Development learning journey! This repository docum
 6. [Project Structure](#project-structure)
 7. [Getting Started](#getting-started)
 8. [Contributing](#contributing)
-9. [License](#license)
 
 ## Introduction
 
