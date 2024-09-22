@@ -8,7 +8,7 @@ const app = express();
 app.use(cors()); // using cors
 app.use(express.json()); // using body-parser
 
-app.use("/", rootRouter);
+app.use("/api/v1", rootRouter);
     
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
