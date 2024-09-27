@@ -147,7 +147,7 @@ router.put("/" , authMiddleware ,  async (req,res) => {
 
 // Route to get users from the backend, filterable via firstName/lastName
 
-router.get("/bulk" , async (req,res) => {
+router.get("/bulk", async (req, res) => {
     const filter = req.query.filter || "";
 
     const users = await User.find({
@@ -157,10 +157,10 @@ router.get("/bulk" , async (req,res) => {
             }
         }, {
             lastName: {
-                "$regex": filter 
+                "$regex": filter
             }
         }]
-    });
+    })
 
     res.json({
         user: users.map(user => ({
@@ -170,7 +170,6 @@ router.get("/bulk" , async (req,res) => {
             _id: user._id
         }))
     })
-
 })
 
 
