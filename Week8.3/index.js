@@ -1,6 +1,7 @@
 // axios vs fetch
 
 const express = require("express");
+const axios = require("axios");
 
 function main() {
     fetch("https://sum-server.100xdevs.com/todos")

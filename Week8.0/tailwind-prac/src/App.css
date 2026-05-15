@@ -1,0 +1,6 @@
+.momo {
+    display: flex;
+    --tw-text-opacity: 1;
+    color: rgb(13 148 136 / var(--tw-text-opacity))
+}
+

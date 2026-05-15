@@ -26,7 +26,8 @@ app.post("/signup" , async (req,res) => {
   const user = new User({ 
     name: username , 
     email: email, 
-    password: password });
+    password: password 
+  });
     user.save();
     res.send({
       "msg":"User created successfully"

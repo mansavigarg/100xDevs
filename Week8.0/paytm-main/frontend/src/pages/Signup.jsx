@@ -23,10 +23,10 @@ const Signup = () => {
 
             <InputBox onchange={e => {
               setFirstName(e.target.value);
-            }} label={"First Name"} placeholder={"Mansavi"} />
+            }} label={"First Name"} placeholder={"Jake"} />
             <InputBox onchange={e => {
               setLastName(e.target.value);
-            }} label={"Last Name"} placeholder={"Garg"} />
+            }} label={"Last Name"} placeholder={"Garry"} />
             <InputBox onchange={e => {
               setUsername(e.target.value);
             }} label={"Email"} placeholder={"example@gmail.com"} />

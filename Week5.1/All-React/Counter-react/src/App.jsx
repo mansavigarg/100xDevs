@@ -34,36 +34,36 @@
 // other way of writing the code is that we divide everything in Component and write the logic ---->>>
 
 
-import { Component, useState } from "react";
+// import { Component, useState } from "react";
 
-function App(){
-  const [count , setCount] = useState(0);
+// function App(){
+//   const [count , setCount] = useState(0);
 
-  return (
-    <div>
-      <CustomButton count={count} setCount={setCount} ></CustomButton>
-      <CustomButton count={count+1} setCount={setCount} ></CustomButton>
-      <CustomButton count={count-1} setCount={setCount} ></CustomButton>
-      <CustomButton count={count*10} setCount={setCount} ></CustomButton>
-    </div>
-  )
-} 
+//   return (
+//     <div>
+//       <CustomButton count={count} setCount={setCount} ></CustomButton>
+//       <CustomButton count={count+1} setCount={setCount} ></CustomButton>
+//       <CustomButton count={count-1} setCount={setCount} ></CustomButton>
+//       <CustomButton count={count*10} setCount={setCount} ></CustomButton>
+//     </div>
+//   )
+// } 
 
 
-// Component
-function CustomButton(props){  //props is the input what takes the both state variable as input
+// // Component
+// function CustomButton(props){  //props is the input what takes the both state variable as input
   
-  function onClickHandler(){
-    props.setCount(props.count+1);
-  }
+//   function onClickHandler(){
+//     props.setCount(props.count+1);
+//   }
 
-  return <button onClick={onClickHandler}>
-    Counter {props.count}
-  </button>
-}
+//   return <button onClick={onClickHandler}>
+//     Counter {props.count}
+//   </button>
+// }
 
 
-export default App
+// export default App
 
 
 
@@ -74,51 +74,51 @@ export default App
 // this is todo wala code ------>>>>
 
 
-// import {useState} from "react";
+import {useState} from "react";
 
-// function App() {
-//   const [todos, setTodos] = useState([{
-//     title: "Go to gym",
-//     description: "Go to gym from 7-9",
-//     completed: false
-//   }, {
-//     title: "Study DSA",
-//     description: "Study DSA form 9-100",
-//     completed: true
-//   }, {
-//     title: "Study DSA",
-//     description: "Study DSA form 9-100",
-//     completed: true
-//   }, ]); 
+function App() {
+  const [todos, setTodos] = useState([{
+    title: "Go to gym",
+    description: "Go to gym from 7-9",
+    completed: false
+  }, {
+    title: "Study DSA",
+    description: "Study DSA form 9-100",
+    completed: true
+  }, {
+    title: "Study DSA",
+    description: "Study DSA form 9-100",
+    completed: true
+  }, ]); 
 
-//   function addTodo() {
-//     // [1, 2]
-//     // [...todos, 3] => [1, 2, 3]
-//     setTodos([...todos, {
-//       title: "new Todo",
-//       description: "desc of new todo"
-//     }])
-//   }
+  function addTodo() {
+    // [1, 2]
+    // [...todos, 3] => [1, 2, 3]
+    setTodos([...todos, {
+      title: "new Todo",
+      description: "desc of new todo"
+    }])
+  }
 
-//   return (
-//     <div>
-//       <button onClick={addTodo}>Add a random todo</button>
-//       {todos.map(function(todo) {
-//         return <Todo title={todo.title} description={todo.description} />
-//       })}
+  return (
+    <div>
+      <button onClick={addTodo}>Add a random todo</button>
+      {todos.map(function(todo) {
+        return <Todo title={todo.title} description={todo.description} />
+      })}
 
-//     </div>
-//   )
-// }
+    </div>
+  )
+}
 
-// function Todo(props) {
-//   return <div>
-//     <h1>{props.title}</h1>
-//     <h2>{props.description}</h2>
-//   </div>
-// }
+function Todo(props) {
+  return <div>
+    <h1>{props.title}</h1>
+    <h2>{props.description}</h2>
+  </div>
+}
 
-// export default App
+export default App
 
 
 
