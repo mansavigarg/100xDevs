@@ -1,7 +1,7 @@
 // import React , { useState } from "react";
 // import { useEffect } from "react";
 
-import axios from "axios";
+// import axios from "axios";
 import { useMemo, useState } from "react";
 import { useEffect, memo } from "react";
 
@@ -31,41 +31,41 @@ import { useEffect, memo } from "react";
 // export default App;
 
 
-function useTodos(){
-	const [todos, setTodos] = useState([])
+// function useTodos(){
+// 	const [todos, setTodos] = useState([])
 
-	useEffect(() => {
-		// fetch("https://dummyjson.com/todos")
-		//   .then(async (response) => {
-		//     const json = await response.json()
-		//     setTodos(json.todos)
-		//   })
+// 	useEffect(() => {
+// 		// fetch("https://dummyjson.com/todos")
+// 		//   .then(async (response) => {
+// 		//     const json = await response.json()
+// 		//     setTodos(json.todos)
+// 		//   })
 		
-		axios.get("https://dummyjson.com/todos")
-			.then(function(response) {
-			setTodos(response.data.todos)
-			})
-	},[])
+// 		axios.get("https://dummyjson.com/todos")
+// 			.then(function(response) {
+// 			setTodos(response.data.todos)
+// 			})
+// 	},[])
 
-}
+// }
 
-function App() {
-	const todos = useTodos()
+// function App() {
+// 	const todos = useTodos()
 
-  return(
-    <>
-      {todos.map((todo) => (
-        <div key={todo.id}>
-          <h1> Title:  {todo.id} </h1>
-          <h2> Description: {todo.todo} </h2>
-        </div>
-      ))}
-    </>
-  )
-}
+//   return(
+//     <>
+//       {todos.map((todo) => (
+//         <div key={todo.id}>
+//           <h1> Title:  {todo.id} </h1>
+//           <h2> Description: {todo.todo} </h2>
+//         </div>
+//       ))}
+//     </>
+//   )
+// }
 
 
-export default App;
+// export default App;
  
 
 
@@ -142,4 +142,38 @@ export default App;
 
 
 // export default App;
+
+
+
+export default function App() {
+    const [count, setCount] = useState(0)
+
+    function increase() {
+        setCount( c => c + 1)
+    }
+
+    return <div>
+        <Counter count = {count}> </Counter>
+        <button onClick={increase}>
+            Click me 
+        </button>
+        <br></br>
+        After Counter :)
+    </div>
+}
+
+
+function Counter(props){
+
+    useEffect(() => {
+        console.log("On mount --------------->>");
+        return () => {
+            console.log("On unMount --------------->>");
+        }
+        
+    }, [props.count])
+    return <div>
+        {props.count}
+    </div>
+}
  
