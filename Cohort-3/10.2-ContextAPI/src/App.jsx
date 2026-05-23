@@ -8,9 +8,12 @@ const BulbContext = React.createContext()
 function App() {
     const [bulbOn, setbulbOn] = useState(true)
     return (
-        <BulbContext.Provider value={{bulbOn: bulbOn, setbulbOn: setbulbOn}}>
-            <LightBulb />
-        </BulbContext.Provider>
+        <div>
+            <BulbContext.Provider value={{bulbOn: bulbOn, setbulbOn: setbulbOn}}>
+                <LightBulb />
+            </BulbContext.Provider>
+            <ContextAPI />
+        </div>
     )
 }
 
