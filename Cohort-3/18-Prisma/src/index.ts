@@ -1,30 +1,28 @@
-import { PrismaClient } from "@prisma/client/extension"
+import express from "express";
+import { prisma } from "./prisma.js";
+
+const app = express();
+
+app.get("/", async (req, res) => {
+    const user = await prisma.user.findMany();
+    res.json({user});
+});
 
 
-const client = new PrismaClient();
-
-
-const createUser = async () => {
-    await client.user.create({
-        data: {
-            name: "harkirat",
-            email: "manu@gmail.com",
-            password: "2343",
-            city: "afv"
-        }
-    })
+async function main() {
+        const user = await prisma.user.findFirst({
+            where: {
+                email: "sample@gmail.com"
+            },
+            include: {
+                todo: true
+            }
+        })
+        console.log(user);
 }
 
-const users = async () => {
-    const user = await client.user.findFirst({
-        where: {
-            id: 1
-        },
-        include: {
-            todos: true
-        }
-    })
-}
+main();
 
-createUser()
-
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
